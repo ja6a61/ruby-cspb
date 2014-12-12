@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # ex02.rb
 # 2014-12-11
-# Exercise 8-1. 
+# Exercise 8-2. 
 #
 #Youareprogrammingpartofthesign-upprocedureforanonlinecomputergame.
 #Write a program that prompts the user to enter his or her user ID and
@@ -14,6 +14,39 @@
 
 # I need an array containing the alphabet to test characters
 alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+# Test a character to see if it's alphabetical
+def isAlpha(char)
+    alph = "abcdefghijklmnopqrstuvwxyz"
+    for ch in (0..alph.length - 1)
+	if ((char.downcase <=> alph[ch]) == 0)
+	    return true
+	end
+    end
+    return false
+end
+
+# Test a character for being uppercase
+def isUpper(char)
+    alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    if isAlpha(char)
+	if (char <=> char.upcase) == 0
+	    return true
+	end
+    end
+    return false
+end
+
+# Test a character for being lowercase
+def isLower(char)
+    alph = "abcdefghijklmnopqrstuvwxyz"
+    if isAlpha(char)
+	if (char <=> char.downcase) == 0
+	    return true
+	end
+    end
+    return false
+end
 
 for ch in (0..alphabet.length - 1)
     puts alphabet[ch] 
@@ -30,6 +63,20 @@ end
 
 have_lower = false
 have_upper = false
+is_alpha = false
+
+is_alpha = isAlpha("A")
+puts ("is_alpha: " + is_alpha.to_s)
+is_alpha = isAlpha("1")
+puts ("is_alpha: " + is_alpha.to_s)
+is_upper = false
+is_upper = isUpper("A")
+puts ("is_upper: " + is_upper.to_s)
+is_upper = isUpper("%")
+puts ("is_upper: " + is_upper.to_s)
+puts("isLower(\"a\"): " + isLower("a").to_s)
+puts("isLower(\"A\"): " + isLower("A").to_s)
+
 
 for i in (0..pass_word.length - 1) 
     for ch in (0..alphabet.length)
@@ -50,4 +97,6 @@ for i in (0..pass_word.length - 1)
 	end
     end
 end
-
+# Create functions: isAlpha, isUpper, isLower, isSpecialChar
+# return true or false
+#

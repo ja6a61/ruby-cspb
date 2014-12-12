@@ -14,7 +14,7 @@
 # Hint: use the documentation for the string class.
 
 # I need an array containing the alphabet to test characters
-alphabet = "abcdefghijklmnopqrstuvwxyz"
+# alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 # Test a character to see if it's alphabetical
 def isAlpha(char)
@@ -63,31 +63,24 @@ end
 print("Please enter a password: ")
 pass_word = gets
 puts("You entered: " + pass_word)
+#puts(pass_word + " length: " + pass_word.length.to_s)
+# Remove the carriage return from the string
+pass_word.chomp!
+#puts(pass_word + ".chomp! length: " + pass_word.length.to_s)
 
-if (pass_word.length < 7)
-    puts("Bad password, it's gotta be at least 7 characters long...")
-end
-
-
+have_length = false
 have_lower = false
 have_upper = false
 have_num = false
 have_hash = false
 good_password = false
-is_alpha = false
 
-is_alpha = isAlpha("A")
-puts ("is_alpha: " + is_alpha.to_s)
-is_alpha = isAlpha("1")
-puts ("is_alpha: " + is_alpha.to_s)
-is_upper = false
-is_upper = isUpper("A")
-puts ("is_upper: " + is_upper.to_s)
-is_upper = isUpper("%")
-puts ("is_upper: " + is_upper.to_s)
-puts("isLower(\"a\"): " + isLower("a").to_s)
-puts("isLower(\"A\"): " + isLower("A").to_s)
-
+# Test for correct password length
+if (pass_word.length >= 7)
+    have_length = true
+end
+if (have_length == true)
+# Loop for checking password correctness
 for ch in (0..pass_word.length - 1)
     if have_upper == false
 	if (isUpper(pass_word[ch]) == true)
@@ -100,7 +93,7 @@ for ch in (0..pass_word.length - 1)
 	end
     end
     if have_hash == false
-	if(pass_word[ch] <=> "#") == 0
+	if (pass_word[ch] <=> "#") == 0
 	    have_hash = true
 	end
     end
@@ -118,5 +111,7 @@ puts("have_upper: " + have_upper.to_s)
 puts("have_lower: " + have_lower.to_s)
 puts("have_hash: " + have_hash.to_s)
 puts("have_num: " + have_num.to_s)
+end
+puts("have_length: " + have_length.to_s)
 puts("good_password: " + good_password.to_s)
 

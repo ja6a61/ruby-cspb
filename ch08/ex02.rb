@@ -4,8 +4,9 @@
 # Exercise 8-2. 
 #
 # You are programming part of the sign-up procedure for an online computer game.
-# Write a program that prompts the user to enter his or her user ID and
-# password and enforces the following restrictions:
+# Write a program that prompts the user to enter their user ID and password and 
+# enforces the following restrictions:
+#
 # a. User IDs and passwords must be at least seven characters in length.
 #
 # b. Passwords must contain at least one of each of the following: uppercase 
@@ -19,7 +20,7 @@ alphabet = "abcdefghijklmnopqrstuvwxyz"
 def isAlpha(char)
     alph = "abcdefghijklmnopqrstuvwxyz"
     for ch in (0..alph.length - 1)
-	if ((char.downcase <=> alph[ch]) == 0)
+	if ((char.to_s.downcase <=> alph[ch]) == 0)
 	    return true
 	end
     end
@@ -48,9 +49,15 @@ def isLower(char)
     return false
 end
 
-for ch in (0..alphabet.length - 1)
-    puts alphabet[ch] 
-    puts alphabet[ch].upcase
+# Test a character for being a number
+def isNum(char)
+    nums = "0123456789"
+    for n in (0..nums.length - 1)
+	if (char.to_s <=> nums[n]) == 0
+	    return true
+	end
+    end
+    return false
 end
 
 print("Please enter a password: ")
@@ -61,8 +68,12 @@ if (pass_word.length < 7)
     puts("Bad password, it's gotta be at least 7 characters long...")
 end
 
+
 have_lower = false
 have_upper = false
+have_num = false
+have_hash = false
+good_password = false
 is_alpha = false
 
 is_alpha = isAlpha("A")
@@ -77,26 +88,35 @@ puts ("is_upper: " + is_upper.to_s)
 puts("isLower(\"a\"): " + isLower("a").to_s)
 puts("isLower(\"A\"): " + isLower("A").to_s)
 
-
-for i in (0..pass_word.length - 1) 
-    for ch in (0..alphabet.length)
-	if ((pass_word[i].downcase <=> alphabet[ch]) == 0)
-	    puts (pass_word[i] + " is alpha char.")
-	    for test_lower in (0..alphabet.length)
-		if ((pass_word[i] <=> alphabet[test_lower]) == 0)
-		    have_lower = true
-		    puts (pass_word[i] + " is lower-case.")
-		    break
-		elsif ((pass_word[i] <=> alphabet[test_lower].upcase) == 0)
-		    have_upper = true
-		    puts (pass_word[i] + " is upper-case.")
-		    break
-		 end
-             end
-	    break
+for ch in (0..pass_word.length - 1)
+    if have_upper == false
+	if (isUpper(pass_word[ch]) == true)
+	    have_upper = true
 	end
     end
+    if have_lower == false
+	if (isLower(pass_word[ch]) == true)
+	    have_lower = true
+	end
+    end
+    if have_hash == false
+	if(pass_word[ch] <=> "#") == 0
+	    have_hash = true
+	end
+    end
+    if have_num == false
+	if (isNum(pass_word[ch]) == true)
+	    have_num = true
+	end
+    end
+    if have_lower and have_upper and have_hash and have_num
+	good_password = true
+	break
+    end
 end
-# Create functions: isAlpha, isUpper, isLower, isSpecialChar
-# return true or false
-#
+puts("have_upper: " + have_upper.to_s)
+puts("have_lower: " + have_lower.to_s)
+puts("have_hash: " + have_hash.to_s)
+puts("have_num: " + have_num.to_s)
+puts("good_password: " + good_password.to_s)
+

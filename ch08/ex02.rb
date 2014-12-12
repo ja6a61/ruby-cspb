@@ -3,9 +3,9 @@
 # 2014-12-11
 # Exercise 8-2. 
 #
-#Youareprogrammingpartofthesign-upprocedureforanonlinecomputergame.
-#Write a program that prompts the user to enter his or her user ID and
-#password and enforces the following restrictions:
+# You are programming part of the sign-up procedure for an online computer game.
+# Write a program that prompts the user to enter his or her user ID and
+# password and enforces the following restrictions:
 # a. User IDs and passwords must be at least seven characters in length.
 #
 # b. Passwords must contain at least one of each of the following: uppercase 

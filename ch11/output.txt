@@ -1,0 +1,2 @@
+bar.txt  input.txt   xmpl-11-1.rb  xmpl-11-3.rb
+foo.txt  output.txt  xmpl-11-2.rb

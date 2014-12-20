@@ -99,12 +99,12 @@ def get_colour
   return colour_input
 end
 
-board = Array.new(MAX_ROWS) {Array.new(MAX_COLS)}
-#puts board.to_s
-
+#
+# main program loop starts here
+#
 my_board = Board.new()
-puts "my_board:"
-my_board.display
+#puts "my_board:"
+#my_board.display
 
 # Write code to ask users for game move data (input). 
 # Place moves in to the array.
@@ -128,10 +128,6 @@ while continue == true
   decision = ""
 end
 
-#puts "row_input: " + row_input.to_s
-#puts "col_input: " + col_input.to_s
-#puts "colour_input: " + colour_input
-#puts "board[#{row_input}][#{col_input}]: " + board[row_input][col_input]
 my_board.display
 
 

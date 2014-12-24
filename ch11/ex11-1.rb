@@ -13,6 +13,7 @@ MAX_ROWS = 19
 MAX_COLS = 19
 WHITE = "W"
 BLACK = "B"
+FILENAME = "board.txt"
 
 class Board
   MAX_ROWS = 19
@@ -28,20 +29,83 @@ class Board
     puts @board.to_s
   end
 
+  def to_s
+    @board.each do |row|
+      puts row.to_s
+    end
+    puts "@board.size: #{@board.size}"
+  end
+
+  def row_to_s(row)
+    if validate_row(row)
+      return @board[row].to_s
+    else
+      return false
+    end
+  end
+
+  def size
+    return @board.size
+  end
+
+  def validate_row(row)
+    if row >= 0 and row < MAX_ROWS
+      return true
+    else
+      return false
+    end
+  end
+
+  def validate_column(col)
+    if col >= 0 and col < MAX_COLS
+      return true
+    else
+      return false
+    end
+  end
+
+  def validate_colour(clr)
+    if clr.upcase == "B" or clr.upcase == "W"
+      return true
+    else
+      return false
+    end
+  end
+
   def store (row, col, colour)
     # validate input
-    if row >= 0 and row < MAX_ROWS
-      if col >= 0 and col < MAX_COLS
-        if colour.upcase == "B" or colour.upcase == "W"
-          @board[row][col] = colour
-          return true
-        else
-          return false
+    if validate_row(row)
+    #if row >= 0 and row < MAX_ROWS
+      if validate_column(col)
+      #if col >= 0 and col < MAX_COLS
+        if validate_colour(colour)
+        #if colour.upcase == "B" or colour.upcase == "W"
+          if is_empty(row, col)
+            @board[row][col] = colour
+            return true
+          else
+            puts "board[#{row}][#{col}] already occupied: " + 
+              @board[row][col].to_s
+          end
         end
       end
     end
+    return false
   end
-end
+
+  def is_empty(row, col)
+    if validate_row(row)
+      if validate_column(col)
+        if @board[row][col] == nil
+          return true
+        end
+      end
+    end
+    return false
+  end
+
+
+end # class Board
 
 def get_row
   input_good = false
@@ -97,7 +161,7 @@ def get_colour
     end
   end
   return colour_input
-end
+end 
 
 #
 # main program loop starts here
@@ -114,8 +178,8 @@ my_board = Board.new()
 continue = true
 decision = ""
 while continue == true
-  r_ip = get_col
-  c_ip = get_row
+  r_ip = get_row
+  c_ip = get_col
   clr_ip = get_colour
   my_board.store(r_ip, c_ip, clr_ip)
   while decision != "Y" and decision != "N"
@@ -123,11 +187,18 @@ while continue == true
     decision = gets.chomp.upcase
     if decision == "N"
       continue = false
+      puts "Saving board to file: '#{FILENAME}'"
+      file = FileWriter.new(FILENAME)
+      for i in 0..my_board.size - 1
+        file.write_line(my_board.row_to_s(i))
+      end
+      file.close
     end
   end
   decision = ""
 end
 
 my_board.display
+my_board.to_s
 
 

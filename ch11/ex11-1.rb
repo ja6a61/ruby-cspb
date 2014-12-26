@@ -39,9 +39,8 @@ class Board
   def row_to_s(row)
     if validate_row(row)
       return @board[row].to_s
-    else
-      return false
     end
+    return false
   end
 
   def size
@@ -49,27 +48,28 @@ class Board
   end
 
   def validate_row(row)
-    if row >= 0 and row < MAX_ROWS
-      return true
-    else
-      return false
-    end
+    row >= 0 and row < MAX_ROWS ? true : false
+#    if row >= 0 and row < MAX_ROWS
+#      return true
+#    end
+#    return false
   end
 
   def validate_column(col)
-    if col >= 0 and col < MAX_COLS
-      return true
-    else
-      return false
-    end
+    col >= 0 and col < MAX_COLS ? true : false
+#    if col >= 0 and col < MAX_COLS
+#      return true
+#    end
+#    return false
   end
 
   def validate_colour(clr)
-    if clr.upcase == "B" or clr.upcase == "W"
-      return true
-    else
-      return false
-    end
+    clr.upcase == "B" or clr.upcase == "W"? true false
+#    if clr.upcase == "B" or clr.upcase == "W"
+#      return true
+#    else
+#      return false
+#    end
   end
 
   def store (row, col, colour)

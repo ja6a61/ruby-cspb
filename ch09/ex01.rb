@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
 # ex01.rb
 # 2014-01-03
+# Exercise 9-1
 # Define a class to represent at television.
 #
 
@@ -18,7 +20,7 @@ class Television
 
     # Volume controls
     def set_vol(volume)
-	if volume > 0 and volume < 11
+	if volume >= 0 and volume < 11
 	    @vol = volume
 	end
     end

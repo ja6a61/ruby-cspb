@@ -1,7 +1,7 @@
 # file_reader.rb
 # sat 27 dec 2014
 #
-# The class to encapsulates writing a file.
+# The class to encapsulate reading a file.
 #
 class FileReader
 

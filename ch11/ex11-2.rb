@@ -5,14 +5,30 @@
 # program read a set of words and definitions from a file; display definitions 
 # one at a time, in random order; and prompt for the appropriate word.
 #
-require_relative "file_reader.rb"
 # write a reader class for reading files
-# require_relative "file_reader.rb"
-#
-filename = "definitions.txt"
+require_relative "file_reader.rb"
 
-file = FileReader.new(filename)
-line = file.read_line
+# Read definitions into an array from file.
+#
+def get_defs(file)
+  defs = Array.new
+  until ((line = file.read_line) == nil)
+    if line == "\n"
+      next
+    else
+      line.chomp!
+      defs.push(line) 
+    end
+  end
+  return defs
+end
+
+filename = "definitions.txt"
+definitions = Array.new
+puts "definitions.to_s: " + definitions.to_s
+
+defs_file = FileReader.new(filename)
+line = defs_file.read_line
 
 puts "line: " + line
 
@@ -24,3 +40,7 @@ definition = line.split(':')
 puts "definition:"
 puts definition
 puts "definition.class: #{definition.class}"
+
+definitions = get_defs(defs_file)
+puts "definitions array: " + definitions.to_s
+

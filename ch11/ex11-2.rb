@@ -49,3 +49,15 @@ definitions.each do |line|
   puts "definition[1]: " + definition[1]
 end
 
+# create a set of indexes to definitions in a random order
+rand_index = (0..definitions.size - 1).to_a.shuffle.take(definitions.size)
+
+puts "rand_index: #{rand_index}"
+
+rand_index.each do |word|
+  current_word = definitions[word].split(':')
+  puts "Whats word is this:"
+  puts current_word[1]
+  puts "correct answer: #{current_word[0]}"
+end
+

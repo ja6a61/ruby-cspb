@@ -25,39 +25,24 @@ end
 
 filename = "definitions.txt"
 definitions = Array.new
-#puts "definitions.to_s: " + definitions.to_s
 
 defs_file = FileReader.new(filename)
-#line = defs_file.read_line
-#puts "line: " + line
-
-#puts "line.split(':'):"
-#puts line.split(':')
-
-# below creates an array [word, definition text]
-#definition = line.split(':')
-
-#puts "definition:"
-#puts definition
-#puts "definition.class: #{definition.class}"
 
 definitions = get_defs(defs_file)
-#puts "definitions array: " + definitions.to_s
-definitions.each do |line|
-  definition = line.split(':')
-  puts "definition[0]: " + definition[0]
-  puts "definition[1]: " + definition[1]
-end
 
 # create a set of indexes to definitions in a random order
 rand_index = (0..definitions.size - 1).to_a.shuffle.take(definitions.size)
 
-puts "rand_index: #{rand_index}"
-
 rand_index.each do |word|
   current_word = definitions[word].split(':')
-  puts "Whats word is this:"
+  puts "What word is this:"
   puts current_word[1]
-  puts "correct answer: #{current_word[0]}"
+  answer = gets.chomp
+  if answer == current_word[0]
+    puts "Correct! Well done you clever thing."
+  else
+    puts "No - that's not right. The correct answer is: #{current_word[0]}"
+  end
+  puts
 end
-
+defs_file.close

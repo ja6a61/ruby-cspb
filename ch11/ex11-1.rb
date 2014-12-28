@@ -64,7 +64,7 @@ class Board
   end
 
   def validate_colour(clr)
-    clr.upcase == "B" or clr.upcase == "W"? true false
+    clr.upcase == "B" or clr.upcase == "W"? true : false
 #    if clr.upcase == "B" or clr.upcase == "W"
 #      return true
 #    else

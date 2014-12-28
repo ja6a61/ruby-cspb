@@ -25,22 +25,27 @@ end
 
 filename = "definitions.txt"
 definitions = Array.new
-puts "definitions.to_s: " + definitions.to_s
+#puts "definitions.to_s: " + definitions.to_s
 
 defs_file = FileReader.new(filename)
-line = defs_file.read_line
+#line = defs_file.read_line
+#puts "line: " + line
 
-puts "line: " + line
+#puts "line.split(':'):"
+#puts line.split(':')
 
-puts "line.split(':'):"
-puts line.split(':')
+# below creates an array [word, definition text]
+#definition = line.split(':')
 
-definition = line.split(':')
-
-puts "definition:"
-puts definition
-puts "definition.class: #{definition.class}"
+#puts "definition:"
+#puts definition
+#puts "definition.class: #{definition.class}"
 
 definitions = get_defs(defs_file)
-puts "definitions array: " + definitions.to_s
+#puts "definitions array: " + definitions.to_s
+definitions.each do |line|
+  definition = line.split(':')
+  puts "definition[0]: " + definition[0]
+  puts "definition[1]: " + definition[1]
+end
 
